@@ -1,5 +1,6 @@
 :root{
     --board-size: 450px;
+    --pop-gap: 8px;
 }
 *{
     margin: 0;
@@ -11,18 +12,27 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .board{
     width: var(--board-size);
     height: var(--board-size);
     border-radius: 10px;
     overflow: hidden;
+    margin-bottom: 15px;
+    transition: .5s;
+}
+.board.flipH{
+    transform: scaleX(-1);
+}
+.board.flipV{
+    transform: scaleY(-1);
 }
 .row{
     width: 100%;
     height: calc(var(--board-size) / 6);
     box-shadow: inset 0 0 10px rgba(0, 0, 0, .5);
-    padding: 8px;
+    padding: var(--pop-gap);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,14 +56,28 @@ body{
     background-color: red;
 }
 .pop{
-    width: calc(var(--board-size) / 6 - 16px);
-    height: calc(var(--board-size) / 6 - 16px);
+    width: calc(var(--board-size) / 6 - (var(--pop-gap) * 2));
+    height: calc(var(--board-size) / 6 - (var(--pop-gap) * 2));
     border-radius: 50%;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, .5);
     cursor: pointer;
 }
 .pop.active{
     box-shadow: inset 0 0 40px rgba(0, 0, 0, .5);
+}
+button{
+    border: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px;
+}
+#flipH{
+    background-color: teal;
+}
+#flipV{
+    background-color: green;
 }
 @media(max-width: 470px){
     :root{
